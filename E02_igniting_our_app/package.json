@@ -1,0 +1,29 @@
+{
+  "name": "e02_igniting_our_app",
+  "version": "1.0.0",
+  "description": "second episode of namaste react",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jayasimman-P-K/namaste-react.git"
+  },
+  "author": "jayasimman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jayasimman-P-K/namaste-react/issues"
+  },
+  "homepage": "https://github.com/Jayasimman-P-K/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "^2.10.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
