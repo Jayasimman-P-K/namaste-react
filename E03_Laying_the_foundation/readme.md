@@ -16,6 +16,4 @@
 - class components => older version
 - functional components => newer version
 
-# Reac t functional components:
-
--
+# React functional components:
