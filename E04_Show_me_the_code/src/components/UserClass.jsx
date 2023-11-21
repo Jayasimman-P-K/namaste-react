@@ -28,7 +28,7 @@ class UserClass extends React.Component {
                     this.setState({
                         count: 0,
                     })
-                }} >Reset</button>
+                }}>Reset</button>
 
                 <h2>Name: {name}</h2>
                 <h3>Location: {location}</h3>
