@@ -2,11 +2,13 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { About } from "./pages/About";
 import Body from "./components/Body";
 import { Error } from "./pages/Error";
 import { Contact } from "./pages/Contact";
 import ResMenu from "./components/ResMenu";
+import Cart from "./components/Cart";
+
+const About = lazy(() => import("./pages/About"));
 
 const Grocery = lazy(() => import("./components/Grocery"));
 
@@ -21,12 +23,21 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+
       {
         path: "/restaurants/:resId",
         element: <ResMenu />,

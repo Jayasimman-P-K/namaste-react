@@ -1,6 +1,18 @@
+import { useDispatch } from "react-redux";
 import { IMG_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
+import { useState } from "react";
 
 const ItemList = ({ items }) => {
+  const [addBtn, setAddBtn] = useState("ADD");
+
+  const dispatch = useDispatch();
+
+  const addItemToCart = (item) => {
+    dispatch(addItem(item));
+    // setAddBtn(addBtn === "ADD" ? "REMOVE" : "ADD");
+  };
+
   return (
     <div>
       {items?.map((item) => {
@@ -44,8 +56,11 @@ const ItemList = ({ items }) => {
             </div>
             <div className="w-3/12">
               <div className="relative">
-                <div className="absolute right-1/4  bottom-0 bg-black text-white px-6 p-2 rounded-lg hover:scale-105 hover:cursor-pointer">
-                  <button className="">ADD</button>
+                <div
+                  onClick={() => addItemToCart(item)}
+                  className="absolute right-1/4  bottom-0 bg-black text-white px-6 p-2 rounded-lg hover:scale-105 hover:cursor-pointer"
+                >
+                  <button className="">{addBtn}</button>
                 </div>
                 <img
                   className="w-full p-3 rounded-3xl h-32 object-cover"

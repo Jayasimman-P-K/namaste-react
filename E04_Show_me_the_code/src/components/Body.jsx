@@ -45,20 +45,21 @@ function Body() {
       ) : (
         <div className="rest-container flex justify-center">
           <div className="grid grid-cols-4 gap-4">
-            {listOfRestaurants.map((res) => {
-              if (res && res?.info && res?.info?.id) {
-                return (
-                  <Link id={res?.info?.id} to={"/restaurants/" + res?.info.id}>
-                    <RestBox
-                      name={res?.info?.name}
-                      rating={res?.info?.avgRatingString}
-                      costs={res?.info?.costForTwo}
-                      cuisines={res?.info?.cuisines}
-                      cloudinaryImageId={res?.info?.cloudinaryImageId}
-                    />
-                  </Link>
-                );
-              }
+            {listOfRestaurants?.map((res) => {
+              return (
+                <Link id={res?.info?.id} to={"/restaurants/" + res?.info.id}>
+                  <RestBox
+                    name={res?.info?.name}
+                    rating={res?.info?.avgRatingString}
+                    costs={res?.info?.costForTwo}
+                    cuisines={res?.info?.cuisines}
+                    cloudinaryImageId={res?.info?.cloudinaryImageId}
+                  />
+                </Link>
+              );
+              // if (res && res?.info && res?.info?.id) {
+
+              // }
             })}
           </div>
         </div>
