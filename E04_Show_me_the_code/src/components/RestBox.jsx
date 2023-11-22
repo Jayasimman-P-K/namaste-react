@@ -3,7 +3,7 @@ import { IMG_URL } from "../utils/constants";
 
 function RestBox({ name, costs, rating, cuisines, cloudinaryImageId }) {
   return (
-    <div className="rest-box m-4 p-4 w-[250px] min-h-full hover:scale-105 transition-all">
+    <div className="rest-box m-4 p-4 w-[250px] min-h-full hover:scale-95 transition-all">
       <div className="box-food-img ">
         <img
           className="rounded-lg h-56 w-full object-cover"

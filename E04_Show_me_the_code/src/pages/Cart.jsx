@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import ItemList from "./ItemList";
-import { clearItem } from "../utils/cartSlice";
+import ItemList from "../components/ItemList";
+import { clearItem, removeItem } from "../utils/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -12,7 +12,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="w-6/12 mx-auto">
+    <div className="w-6/12 mx-auto mt-36">
       <div className=" m-5 p-2 flex justify-between">
         <h1 className="text-xl font-bold">Cart Items </h1>
         <button
@@ -27,7 +27,11 @@ const Cart = () => {
       )}
 
       <div className="shadow-md">
-        <ItemList items={cartItems} />{" "}
+        <ItemList
+          items={cartItems}
+          addBtn={"Remove"}
+          reducerFunc={removeItem}
+        />
       </div>
     </div>
   );

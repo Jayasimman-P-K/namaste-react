@@ -1,3 +1,4 @@
+import { addItem } from "../utils/cartSlice";
 import ItemList from "./ItemList";
 import { useState } from "react";
 
@@ -18,7 +19,13 @@ const ResCategory = ({ data, showItem, setShowIndex }) => {
             </span>
             <span>🔽</span>
           </div>
-          {showItem && <ItemList items={data?.itemCards} />}
+          {showItem && (
+            <ItemList
+              items={data?.itemCards}
+              addBtn={"Add"}
+              reducerFunc={addItem}
+            />
+          )}
         </div>
       </div>
     </div>

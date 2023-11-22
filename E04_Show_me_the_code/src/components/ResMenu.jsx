@@ -36,7 +36,7 @@ const ResMenu = () => {
   //   console.log(categories);
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-36">
       <div className="">
         <h1 className="my-6 text-xl font-bold">{name}</h1>
         <h2 className="text-base font-bold">

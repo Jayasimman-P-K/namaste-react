@@ -3,13 +3,11 @@ import { IMG_URL } from "../utils/constants";
 import { addItem } from "../utils/cartSlice";
 import { useState } from "react";
 
-const ItemList = ({ items }) => {
-  const [addBtn, setAddBtn] = useState("ADD");
-
+const ItemList = ({ items, addBtn, reducerFunc }) => {
   const dispatch = useDispatch();
 
   const addItemToCart = (item) => {
-    dispatch(addItem(item));
+    dispatch(reducerFunc(item));
     // setAddBtn(addBtn === "ADD" ? "REMOVE" : "ADD");
   };
 
@@ -56,17 +54,19 @@ const ItemList = ({ items }) => {
             </div>
             <div className="w-3/12">
               <div className="relative">
-                <div
-                  onClick={() => addItemToCart(item)}
-                  className="absolute right-1/4  bottom-0 bg-black text-white px-6 p-2 rounded-lg hover:scale-105 hover:cursor-pointer"
-                >
-                  <button className="">{addBtn}</button>
-                </div>
                 <img
                   className="w-full p-3 rounded-3xl h-32 object-cover"
                   src={IMG_URL + item?.card?.info?.imageId}
                   alt=""
                 />
+                <div
+                  onClick={() => {
+                    addItemToCart(item);
+                  }}
+                  className="absolute cursor-pointer bottom-0 my-0 mx-11 rounded-lg bg-white hover:bg-green-50 hover:scale-105 p-2 px-5 border-green-400 border-2 hover:shadow-md"
+                >
+                  <button className="">{addBtn}</button>
+                </div>
               </div>
             </div>
           </div>

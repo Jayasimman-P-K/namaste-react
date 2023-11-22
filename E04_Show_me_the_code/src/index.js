@@ -6,11 +6,11 @@ import Body from "./components/Body";
 import { Error } from "./pages/Error";
 import { Contact } from "./pages/Contact";
 import ResMenu from "./components/ResMenu";
-import Cart from "./components/Cart";
+import Cart from "./pages/Cart";
 
 const About = lazy(() => import("./pages/About"));
 
-const Grocery = lazy(() => import("./components/Grocery"));
+const Grocery = lazy(() => import("./pages/Grocery"));
 
 const appRouter = createBrowserRouter([
   {

@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 function Body() {
   const [listOfRestaurants, setListOfRestaurants] = useState(null);
+  const [filteredRestaurants, setFilteredRestaurants] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     swiggyAPI();
@@ -19,8 +21,10 @@ function Body() {
     setListOfRestaurants(
       data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setFilteredRestaurants(
+      data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
-
   const onlineStaus = useOnlineStatus();
 
   if (onlineStaus === false) {
@@ -28,13 +32,37 @@ function Body() {
   }
 
   return (
-    <div className="body">
+    <div className="body mt-32">
       <div className="search-box  flex justify-center">
         <div className="search m-4 p-4">
-          <input className="border border-solid border-black" type="text" />
+          <input
+            onChange={(e) => {
+              const filteredRestaurant = listOfRestaurants.filter(
+                (res) =>
+                  res.info.name
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase()) ||
+                  res.info.cuisines
+                    .join(", ")
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase())
+              );
+              setFilteredRestaurants(filteredRestaurant);
+              setSearchText(e.target.value);
+            }}
+            className="rounded-md ring-1 ring-inset ring-green-200 focus:ring-2 focus:ring-green-500 placeholder:italic py-1.5 pl-4 pr-20 text-gray-900 placeholder:text-gray-400 focus:outline-none"
+            type="text"
+            placeholder="McDonald's..."
+          />
           <button
             className="px-4 py-2 bg-green-100 m-4 rounded-lg"
-            onClick={() => console.log("btn clicked")}
+            onClick={() => {
+              const filteredRestaurant = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+
+              setFilteredRestaurants(filteredRestaurant);
+            }}
           >
             Search
           </button>
@@ -45,9 +73,9 @@ function Body() {
       ) : (
         <div className="rest-container flex justify-center">
           <div className="grid grid-cols-4 gap-4">
-            {listOfRestaurants?.map((res) => {
+            {filteredRestaurants?.map((res) => {
               return (
-                <Link id={res?.info?.id} to={"/restaurants/" + res?.info.id}>
+                <Link key={res?.info?.id} to={"/restaurants/" + res?.info.id}>
                   <RestBox
                     name={res?.info?.name}
                     rating={res?.info?.avgRatingString}
@@ -67,4 +95,5 @@ function Body() {
     </div>
   );
 }
+
 export default Body;
